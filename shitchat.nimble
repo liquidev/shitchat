@@ -11,3 +11,4 @@ bin           = @["shitchat"]
 # Dependencies
 
 requires "nim >= 0.19.9"
+requires "nimPNG"
