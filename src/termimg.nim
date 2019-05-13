@@ -5,12 +5,13 @@ proc renderImage*(img: PNGResult, w, h: int): string =
     for x in 0..<w:
       let
         ix = int x / w * img.width.float
-        iy = int (y * 2) / h * img.height.float
-        offset1 = (ix + iy * img.width) * 3
+        iy1 = int (y * 2) / h * img.height.float
+        offset1 = (ix + iy1 * img.width) * 3
         r1 = int img.data[offset1]
         g1 = int img.data[offset1 + 1]
         b1 = int img.data[offset1 + 2]
-        offset2 = (ix + (iy + 1) * img.width) * 3
+        iy2 = int (y * 2 + 1) / h * img.height.float
+        offset2 = (ix + iy2 * img.width) * 3
         r2 = int img.data[offset2]
         g2 = int img.data[offset2 + 1]
         b2 = int img.data[offset2 + 2]
