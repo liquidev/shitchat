@@ -5,7 +5,6 @@ import tables
 import terminal
 
 import nimPNG
-import regex
 
 import server
 
