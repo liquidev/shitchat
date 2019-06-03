@@ -49,8 +49,5 @@ COMMANDS
     /nick <new nickname>                    change your nickname
     /image <width> <height> <url>           send an image
 """
-  DefaultShitchatCfg* = """
-[Images]
-"""
   Prompt* = "\e[91m ·\e[93m · \e[92m· \e[0m"
   CmdPrefix* = '/'
