@@ -1,23 +1,22 @@
 import asyncdispatch
 import os
 import parseopt
-import tables
-import terminal
 
-import nimPNG
-
+import config
 import server
+
+var
+  configFile = "shitchat.cfg"
 
 var opt = initOptParser(commandLineParams())
 for t, k, v in getopt(opt):
   case t
-  of cmdArgument:
-    channelName = k
+  of cmdShortOption:
+    case k
+    of "c": configFile = v
   else: discard
 
-if channelName == "":
-  styledEcho(fgRed, "Usage: ", resetStyle, "shitchat <channel-name>")
-  quit(QuitFailure)
+loadConfig(configFile)
 
 asyncCheck serve()
 runForever()

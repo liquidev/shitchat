@@ -7,7 +7,7 @@ import tables
 import nimPNG
 
 import client
-import staticconf
+import config
 import termimg
 
 type

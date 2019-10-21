@@ -5,12 +5,10 @@ import terminal
 
 import client
 import commands
-import staticconf
-
-var channelName* = ""
+import config
 
 proc processClient(user: User) {.async.} =
-  await user.client.send("\e[32m" & Welcome & "\e[0m\n\n")
+  await user.client.send("\e[32m" & channelMotd & "\e[0m\n\n")
   await user.client.send(
     "\e[95mWelcome to channel \e[97m" & channelName & "\e[95m!\e[0m")
   var nickname = ""
@@ -59,10 +57,10 @@ proc serve*() {.async.} =
   users = @[]
   var server = newAsyncSocket()
   server.setSockOpt(OptReuseAddr, true)
-  server.bindAddr(Port(12321))
+  server.bindAddr(Port(port))
   server.listen()
 
-  styledEcho(fgWhite, "Use `nc <your ip> 12321` to connect")
+  styledEcho(fgWhite, "Use `nc <your ip> ", $port, "` to connect")
 
   addQuitProc do:
     for usr in users:

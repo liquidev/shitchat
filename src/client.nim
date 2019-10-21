@@ -1,9 +1,7 @@
 import asyncdispatch
 import asyncnet
 
-import nimPNG
-
-import staticconf
+import config
 
 type
   User* = ref object
