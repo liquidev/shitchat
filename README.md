@@ -4,9 +4,9 @@ shitty netcat chat
 
 ## Usage
 
-To start a server, run:
+To start a server, simply run:
 ```
-$ shitchat <channel name>
+$ shitchat
 ```
 To connect, run:
 ```sh
@@ -14,7 +14,14 @@ $ nc <your IP or localhost> 12321
 ```
 You might need to open the port in your router for others to be able to connect.
 
-For extra help, use the `/help` command in your shitchat session.
+For extra help, use the `/help` command in your shitchat client session.
+
+## Configuring
+
+If the shitchat config file doesn't exist, the server will generate one and put
+it in the current working directory. Feel free to change options as you wish;
+any errors you make will be pointed out. If you want to change the file used for
+configuration, use the option `-c:<other config file>` when starting the server.
 
 ## Compiling
 
