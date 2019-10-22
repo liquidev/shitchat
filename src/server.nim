@@ -66,11 +66,18 @@ proc serve*() {.async.} =
     for usr in users:
       usr.client.close()
 
-  while true:
-    let
-      client = await server.accept()
-      user = User(client: client, nick: "anon")
+  try:
+    while true:
+      let
+        client = await server.accept()
+        user = User(client: client, nick: "anon")
 
-    styledEcho(fgWhite, client.getPeerAddr()[0], fgGreen, " connected")
+      styledEcho(fgWhite, client.getPeerAddr()[0], fgGreen, " connected")
 
-    asyncCheck processClient(user)
+      asyncCheck processClient(user)
+      raise newException(Exception, "uwu")
+  except Exception as e:
+    styledEcho(fgRed, "An exception has been caught!")
+    styledEcho(fgWhite, styleDim, "Message: ", resetStyle, e.msg)
+    styledEcho(fgWhite, styleDim, "Stack traceback:")
+    writeStackTrace()
