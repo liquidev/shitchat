@@ -24,7 +24,7 @@ proc processClient(user: User) {.async.} =
     if msg == "":
       for i in countdown(users.len - 1, 0):
         if users[i] == user:
-          users.del(i)
+          users.delete(i)
           break
       await sendToAll("\e[97m" & user.nick & "\e[91m quit the channel")
       styledEcho(fgWhite, user.client.getLocalAddr()[0], fgRed, " disconnected")
