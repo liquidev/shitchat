@@ -22,12 +22,10 @@ proc processClient(user: User) {.async.} =
   while true:
     let msg = await user.client.recvLine()
     if msg == "":
-      var i = 0
-      while i < users.len:
+      for i in countdown(users.len - 1, 0):
         if users[i] == user:
           users.del(i)
           break
-        inc(i)
       await sendToAll("\e[97m" & user.nick & "\e[91m quit the channel")
       styledEcho(fgWhite, user.client.getLocalAddr()[0], fgRed, " disconnected")
       return
@@ -75,7 +73,6 @@ proc serve*() {.async.} =
       styledEcho(fgWhite, client.getPeerAddr()[0], fgGreen, " connected")
 
       asyncCheck processClient(user)
-      raise newException(Exception, "uwu")
   except Exception as e:
     styledEcho(fgRed, "An exception has been caught!")
     styledEcho(fgWhite, styleDim, "Message: ", resetStyle, e.msg)
